@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-// TODOS[2025-04-18 18:08]: bodyParser原理功能应用场景和特点
+// NOTES[2025-04-18 18:08]: bodyParser原理功能应用场景和特点
 import mongoose from 'mongoose'
 // TODOS[2025-04-18 18:09]: mongoose原理功能应用场景和特点
 import cors from 'cors'
@@ -11,13 +11,13 @@ import cors from 'cors'
 
 //创建了一个 Express 应用实例，app 是整个应用的核心对象，用于定义路由、配置中间件以及处理 HTTP 请求和响应
 const app = express('express')
-app.use(bodyParser.json({limit:"30mb",extended:true}))
+app.use(bodyParser.json({ limit: "30mb", extended: true }))
 /**
  * 配置了 body-parser 中间件，用于解析 Content-Type: application/json 的请求体。
  * limit: "30mb"：限制请求体的大小为 30MB，防止过大的请求导致服务器内存耗尽。
  * extended: true：允许解析嵌套的复杂对象（使用 qs 库）。
  */
-app.use(bodyParser.urlencoded({limit:"30mb",extended:true}))
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 /**
  * 用于解析 application/x-www-form-urlencoded 格式的表单数据。
  */
@@ -26,4 +26,7 @@ app.use(cors())
  * 用于启用跨域资源共享（CORS），允许其他域名的客户端访问该服务器的资源。
  */
 
+const MONGODBURL = "mongodb+srv://YifanZou:ZYFzyf1352109513266@lonely-planet.qtzqdwl.mongodb.net/?retryWrites=true&w=majority&appName=Lonely-Planet"
+const PORT = process.env.PORT || 5000
 
+mongoose.connect(MONGODBURL, { useNewURLParser: true, useUnifiedTopology: true })
