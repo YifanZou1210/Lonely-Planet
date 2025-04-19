@@ -13,7 +13,7 @@
   "main": "index.js",
   "name": "server",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "type": "module",
   "version": "1.0.0"
